@@ -1,2 +1,10 @@
 # desktop_apps
-a
+
+
+## app_cuadratica
+
+![alt text](image.png)
+
+
+
+###### NO SOY PRECOZ TEACHER
