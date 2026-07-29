@@ -3,8 +3,6 @@ import math
 from tkinter import *
 import tkinter as tk
 
-
-
 ventana_principal = Tk()
 
 ventana_principal.title("app")
@@ -22,8 +20,8 @@ Frame_1.place(x=0, y=0, width=1366, height=170)
 Frame_2 = Frame(ventana_principal, borderwidth=1, relief="solid", bg="#F3F3F3")
 Frame_2.place(x=60, y=190, width=400, height=300)
 
-Frame_2 = Frame(ventana_principal, borderwidth=1, relief="solid", bg="#F3F3F3")
-Frame_2.place(x=500, y=190, width=800, height=550)
+Frame_3 = Frame(ventana_principal, borderwidth=1, relief="solid", bg="#F3F3F3")
+Frame_3.place(x=500, y=190, width=800, height=550)
 
 
 #----------------
@@ -71,11 +69,22 @@ coeficiente_c_text.place(x=100, y=400)
 resultados = Label(ventana_principal, borderwidth=1, relief="solid", text="RESULTADOS", bg="#F3F3F3", fg="#000000", font=("Courier New", 10))
 resultados.place(x=515, y=180)
 
+# Labels para desplegar x1 y x2 en la pantalla
+lbl_tipo_raiz = Label(ventana_principal, text="", bg="#F3F3F3", fg="#000000", font=("Courier New", 10, "bold"), anchor="w")
+lbl_tipo_raiz.place(x=540, y=700, width=720)
+
+lbl_x1 = Label(ventana_principal, text="x1 = ", bg="#F3F3F3", fg="#000000", font=("Courier New", 13), anchor="w")
+lbl_x1.place(x=1000, y=630, width=200)
+
+lbl_x2 = Label(ventana_principal, text="x2 = ", bg="#F3F3F3", fg="#000000", font=("Courier New", 13), anchor="w")
+lbl_x2.place(x=1000, y=670, width=200)
+
 #-----------------
 # zona de Button's
 #-----------------
 
 def calcular_raices():
+	global x1, x2
 	try:
 		a = float(coeficiente_a.get())
 		b = float(coeficiente_b.get())
@@ -86,28 +95,36 @@ def calcular_raices():
 	if a == 0:
 		messagebox.showerror("Error", "El coeficiente 'a' no puede ser 0")
 		return
+
 	d = b*b - 4*a*c
 	if d > 0:
-		r1 = (-b + math.sqrt(d)) / (2*a)
-		r2 = (-b - math.sqrt(d)) / (2*a)
-		message = f"Raíces reales y distintas:\nR1 = {r1}\nR2 = {r2}"
+		x1 = (-b + math.sqrt(d)) / (2*a)
+		x2 = (-b - math.sqrt(d)) / (2*a)
+		
+		lbl_tipo_raiz.config(text="Tipo: Raíces reales y distintas")
+		lbl_x1.config(text=f"x1 = {round(x1, 4)}")
+		lbl_x2.config(text=f"x2 = {round(x2, 4)}")
+		
 	elif d == 0:
-		r = -b / (2*a)
-		message = f"Raíz real doble:\nR = {r}"
+		x1 = -b / (2*a)
+		x2 = x1
+		
+		lbl_tipo_raiz.config(text="Tipo: Raíz real única (doble)")
+		lbl_x1.config(text=f"x1 = {round(x1, 4)}")
+		lbl_x2.config(text=f"x2 = {round(x2, 4)}")
+		
 	else:
 		# raíces complejas
 		real = -b / (2*a)
 		imag = math.sqrt(abs(d)) / (2*a)
-		message = f"Raíces complejas:\nR1 = {real} + {imag}i\nR2 = {real} - {imag}i"
-	messagebox.showinfo("Resultados", message)
+		x1 = complex(real, imag)
+		x2 = complex(real, -imag)
+		
+		lbl_tipo_raiz.config(text="Tipo: Raíces complejas")
+		lbl_x1.config(text=f"x1 = {round(real, 4)} + {round(imag, 4)}i")
+		lbl_x2.config(text=f"x2 = {round(real, 4)} - {round(imag, 4)}i")
 
 calcular_raiz = Button(ventana_principal, text="Calcular raíces", command=calcular_raices, bg="#2483FF", fg="#FFFFFF", font=("Courier New", 17))
 calcular_raiz.place(x=60, y=500, width=400, height=110)
-
-#-----------------------------
-# RESULTADOS VARIABLES X1 Y X2
-#-----------------------------
-
-
 
 ventana_principal.mainloop()
