@@ -3,7 +3,7 @@
 
 ## app_cuadratica
 
-![alt text](screen.png)
+![alt text](screen.jpg)
 
 
 
