@@ -3,8 +3,8 @@
 
 ## app_cuadratica
 
-![alt text](screen.jpg)
 
+![alt text](image.png)
 
 
 ###### NO SOY PRECOZ TEACHER
