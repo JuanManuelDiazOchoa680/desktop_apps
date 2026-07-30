@@ -14,14 +14,19 @@ ventana_principal.resizable(0, 0)
 # zona de Frame's
 #----------------
 
-Frame_1 = Frame(ventana_principal, bg="#FFFFFF")
+Frame_1 = tk.Frame(ventana_principal, bg="#FFFFFF")
 Frame_1.place(x=0, y=0, width=1366, height=170)
 
-Frame_2 = Frame(ventana_principal, borderwidth=1, relief="solid", bg="#F3F3F3")
+Frame_2 = tk.Frame(ventana_principal, borderwidth=1, relief="solid", bg="#F3F3F3")
 Frame_2.place(x=60, y=190, width=400, height=300)
 
-Frame_3 = Frame(ventana_principal, borderwidth=1, relief="solid", bg="#F3F3F3")
+Frame_3 = tk.Frame(ventana_principal, borderwidth=1, relief="solid", bg="#F3F3F3")
 Frame_3.place(x=500, y=190, width=800, height=550)
+
+imagen_cuadratica = tk.PhotoImage(file="cuadratica.png")
+label_imagen = tk.Label(Frame_3, image=imagen_cuadratica, bg="#F3F3F3")
+label_imagen.image = imagen_cuadratica
+label_imagen.place(x=0, y=0, width=457, height=457)
 
 
 #----------------
